@@ -226,8 +226,8 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
-#trending_chart{
-    height: 120px;
-    width: 600px;
-}
+div #geo{
 
+    background-image: url("./imgs/heatmap1.png");
+
+}

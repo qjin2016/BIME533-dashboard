@@ -15,7 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="./css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
@@ -171,13 +171,13 @@
                     <li>
                         <a href="diabetes.html"><i class="fa fa-fw fa-bar-chart-o"></i> Diabetes</a>
                     </li>
-                    <li>
-                        <a href="cancers.html"><i class="fa fa-fw fa-bar-chart-o"></i> Cancer</a>
+            <!--         <li>
+                        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Cancer</a>
                     </li>
                     <li>
-                        <a href="Smoking.html"><i class="fa fa-fw fa-bar-chart-o"></i> Smoking</a>
+                        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Smoking</a>
                     </li>
-                </ul>
+ -->                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
@@ -190,7 +190,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            Dashboard <small>Real-time Overview</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -294,24 +294,39 @@
                 </div>
                 <!-- /.row -->
 
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Weekly Geo Statistics</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="geo" style="height: 270px; background-image: url('./imgs/heatmap.png');background-repeat: no-repeat;background-size: 100% 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
                 <!-- /.row -->
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Trend Statistics</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Quarterly Trend Statistics</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="trending_chart"></div>
+                                <div id="trending"></div>
                                 <script type="text/javascript">
                                     var chart = c3.generate({
-                                            bindto: '#trending_chart',
+                                            bindto: '#trending',
                                             data: {
                                                 columns: [
                                                     ['data1', 1300, 1302, 1302, 1300, 1229, 1227],
                                                     ['data2', 100, 200, 500, 700, 1500, 1550], 
-                                                    ['data3', 20, 60, 330, 500, 1000, 1200]
+                                                    ['data3', 20, 60, 330, 500, 1000, 1200],
+                                                    ['data4', 1000, 1000, 1000, 1000, 1000, 1000]
                                                 ],
                                                 types: {
                                                     data1: 'area-spline',
@@ -321,7 +336,11 @@
                                                 names: {
                                                     data1: 'Num of Patients',
                                                     data2: 'Num of Enrollees',
-                                                    data3: 'Num of Quarterly Active Enrollees'
+                                                    data3: 'Num of Quarterly Active Enrollees',
+                                                    data4: 'Quarterly Goal of Prevalence Control'
+                                                },
+                                                regions: {
+                                                    'data4': [{'start':0, 'end':6, 'style':'dashed'}]
                                                 }
                                             },
                                             axis: {
@@ -329,7 +348,14 @@
                                                             type: 'category',
                                                             // this also works for non timeseries data
                                                             categories: ['2017Q1', '2017Q2',  '2017Q3',  '2017Q4',  '2018Q1',  '2018Q2']
-                                                                                                            }
+                                                                                                            
+                                                        },
+                                                    y: {
+                                                            label: {
+                                                               text: 'Number of People',
+                                                               position: 'outer-middle',
+                                                            }
+                                                        }
                                                 }
                                         });
                                 </script>
@@ -339,19 +365,6 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Geo Statistics</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="geo_chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
 
 
                 <div class="row">
@@ -412,8 +425,8 @@
                                         <thead>
                                             <tr>
                                                 <th>ID #</th>
-                                                <th>Order Date</th>
-                                                <th>Order Time</th>
+                                                <th>Enrollment Date</th>
+                                                <th>Enrollment Time</th>
                                                 <th>Name</th>
                                             </tr>
                                         </thead>
